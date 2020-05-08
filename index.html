@@ -2,9 +2,26 @@
 <html>
     <head>
         <meta name="viewport" content="width=device-width">
+        <meta name="allow-interaction" content="yes">
         <title>Product App</title>
         <link rel="stylesheet" type="text/css" href="style.css">
-        <!-- <link rel="stylesheet" type="text/css" href="{{ media.style.url }}"> -->
+        <link rel="stylesheet" type="text/css" href="{{ media.style.url }}">
+        <script>
+            function inOnSignTV() {
+                // If inside OnSignTV, then we're processed by Jinja and this evaluates to "0"
+                // If inside browser, then this evaluates to "{{0}}" so we can discern by length
+                let jinja_str = "{{0}}"
+                return jinja_str.length == 1
+            }
+            if (inOnSignTV()) {
+                greensocks = "{{ media.vmsocks_green_onwhite.url }}"
+                bluesocks = "{{ media.vmsocks_blue_onwhite.url }}"
+            }
+            else {
+                greensocks = './assets/vmSocks-green-onWhite.jpg'
+                bluesocks = './assets/vmSocks-blue-onWhite.jpg'
+            }
+        </script>
     </head>
     <body>
 
@@ -12,7 +29,7 @@
 
         <div id="app">
             <div class="cart">
-                <p>Cart({{cart.length}})</p>
+                <p>Cart( [[ cart.length ]] )</p>
             </div>
 
             <product :premium="premium" @add-to-cart="updateCart"></product>
@@ -24,6 +41,6 @@
         <!-- production version, optimized for size and speed -->
         <!-- <script src="https://cdn.jsdelivr.net/npm/vue"></script> -->
         <script src="main.js"></script>
-        <!-- <script src="{{ media.main.url }}"></script> -->
+        <script src="{{ media.main.url }}"></script>
     </body>
 </html>

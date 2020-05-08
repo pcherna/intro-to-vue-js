@@ -52,15 +52,17 @@ Vue.component('product', {
                 {
                     variantId: 2234,
                     variantColor: "green",
-                    // variantImage: {{ media.vmsocks_green_onwhite.url }}
-                    variantImage: './assets/vmSocks-green-onWhite.jpg',
+                    variantImage: greensocks,
+                    // variantImage: '{{ media.vmsocks_green_onwhite.url }}',
+                    // variantImage: './assets/vmSocks-green-onWhite.jpg',
                     variantQuantity: 10
                 },
                 {
                     variantId: 2235,
                     variantColor: "blue",
-                    // variantImage: {{ media.vmsocks_blue_onwhite.url }}
-                    variantImage: './assets/vmSocks-blue-onWhite.jpg',
+                    variantImage: bluesocks,
+                    // variantImage: '{{ media.vmsocks_blue_onwhite.url }}',
+                    // variantImage: './assets/vmSocks-blue-onWhite.jpg',
                     variantQuantity: 0
                 }
             ],
@@ -206,6 +208,7 @@ Vue.component('product-tabs', {
 })
 var app = new Vue({
     el: '#app',
+    delimiters: ['[[', ']]'],
     data: {
         premium: false,
         cart: []
@@ -214,5 +217,5 @@ var app = new Vue({
         updateCart(id) {
             this.cart.push(id)
         }
-    }
+    },
 })
